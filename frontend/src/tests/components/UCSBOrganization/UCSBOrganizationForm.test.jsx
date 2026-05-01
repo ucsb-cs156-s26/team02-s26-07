@@ -134,4 +134,15 @@ describe("UCSBOrganizationForm tests", () => {
       screen.queryByText(/Organization Translation is required./),
     ).not.toBeInTheDocument();
   });
+  test("that the inactive checkbox is present", async () => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <UCSBOrganizationForm />
+      </Router>
+    </QueryClientProvider>,
+  );
+
+  expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
+});
 });
