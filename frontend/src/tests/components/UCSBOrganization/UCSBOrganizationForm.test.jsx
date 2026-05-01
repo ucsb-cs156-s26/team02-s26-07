@@ -135,14 +135,14 @@ describe("UCSBOrganizationForm tests", () => {
     ).not.toBeInTheDocument();
   });
   test("that the inactive checkbox is present", async () => {
-  render(
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <UCSBOrganizationForm />
-      </Router>
-    </QueryClientProvider>,
-  );
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <UCSBOrganizationForm />
+        </Router>
+      </QueryClientProvider>,
+    );
 
-  expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
-});
+    expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
+  });
 });
