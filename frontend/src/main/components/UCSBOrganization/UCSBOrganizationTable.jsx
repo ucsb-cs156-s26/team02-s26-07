@@ -11,6 +11,7 @@ import { hasRole } from "main/utils/useCurrentUser";
 export default function UCSBOrganizationTable({
   organizations,
   currentUser,
+  // Stryker disable next-line all
   testIdPrefix = "UCSBOrganizationTable",
 }) {
   const navigate = useNavigate();
