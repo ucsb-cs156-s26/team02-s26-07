@@ -46,12 +46,12 @@ describe("UserTable tests", () => {
     ];
     const expectedFields = [
       "id",
-      "RequesterEmail",
-      "ProfessorEmail",
-      "Explanation",
-      "DateRequested",
-      "DateNeeded",
-      "Done",
+      "requesterEmail",
+      "professorEmail",
+      "explanation",
+      "dateRequested",
+      "dateNeeded",
+      "done",
     ];
     const testId = "RecommendationRequestsTable";
 
