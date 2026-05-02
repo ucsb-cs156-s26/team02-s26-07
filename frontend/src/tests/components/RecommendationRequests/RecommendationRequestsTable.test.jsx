@@ -138,12 +138,15 @@ describe("UserTable tests", () => {
       "1",
     );
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "2",
+      "62",
     );
     // for stryker
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-done`),
     ).toHaveTextContent("Yes");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-done`),
+    ).toHaveTextContent("No");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
