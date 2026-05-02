@@ -54,7 +54,7 @@ function RecommendationRequestForm({
               placeholder="name@example.com"
               isInvalid={Boolean(errors.requesterEmail)}
               {...register("requesterEmail", {
-                required: true
+                required: true,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -72,7 +72,7 @@ function RecommendationRequestForm({
               placeholder="name@example.com"
               isInvalid={Boolean(errors.professorEmail)}
               {...register("professorEmail", {
-                required: true
+                required: true,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -105,7 +105,9 @@ function RecommendationRequestForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateRequested">Date Requested (iso format)</Form.Label>
+            <Form.Label htmlFor="dateRequested">
+              Date Requested (iso format)
+            </Form.Label>
             <Form.Control
               data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
@@ -123,7 +125,9 @@ function RecommendationRequestForm({
         </Col>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateNeeded">Date Needed (iso format)</Form.Label>
+            <Form.Label htmlFor="dateNeeded">
+              Date Needed (iso format)
+            </Form.Label>
             <Form.Control
               data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"

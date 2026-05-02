@@ -28,7 +28,11 @@ describe("RecommendationRequestForm tests", () => {
   test("renders correctly when passing in a RecommendationRequest", async () => {
     render(
       <Router>
-        <RecommendationRequestForm initialContents={recommendationRequestsFixtures.oneRecommendationRequest} />
+        <RecommendationRequestForm
+          initialContents={
+            recommendationRequestsFixtures.oneRecommendationRequest
+          }
+        />
       </Router>,
     );
     await screen.findByTestId(/RecommendationRequestForm-id/);
@@ -66,21 +70,37 @@ describe("RecommendationRequestForm tests", () => {
     );
     await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
     const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "ploo@ucsb.edu" } });
-    fireEvent.change(professorEmailField, { target: { value: "boot@ucsb.edu" } });
-    fireEvent.change(explanationField, { target: { value: "requested noon on January 2nd" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "ploo@ucsb.edu" },
+    });
+    fireEvent.change(professorEmailField, {
+      target: { value: "boot@ucsb.edu" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "requested noon on January 2nd" },
+    });
     fireEvent.change(dateRequestedField, {
       target: { value: "2022-01-02T12:00" },
     });
-      fireEvent.change(dateNeededField, {
+    fireEvent.change(dateNeededField, {
       target: { value: "2023-01-02T12:00" },
     });
     fireEvent.change(doneField, { target: { value: true } });
