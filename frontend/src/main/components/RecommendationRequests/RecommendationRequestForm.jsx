@@ -2,30 +2,31 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-export function removeZ(myString) {
-  // removes timezone, to be added back upon Create/Update. separated out for mutation testing
-  return myString.replace("Z", "");
-}
+// export function removeZ(myString) {
+//   // removes timezone, to be added back upon Create/Update. separated out for mutation testing
+//   return myString.replace("Z", "");
+// }
 
 function RecommendationRequestForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
 }) {
-  const defaultValues = initialContents
-    ? {
-        ...initialContents,
-        dateRequested: removeZ(initialContents.dateRequested),
-        dateNeeded: removeZ(initialContents.dateNeeded),
-      }
-    : {};
+  // const defaultValues = initialContents
+  //   ? {
+  //       ...initialContents,
+  //       dateRequested: removeZ(initialContents.dateRequested),
+  //       dateNeeded: removeZ(initialContents.dateNeeded),
+  //     }
+  //   : {};
 
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues });
+    // } = useForm({ defaultValues });
+  } = useForm({ defaultValues: initialContents || {} });
   // Stryker restore all
 
   const navigate = useNavigate();
@@ -117,8 +118,7 @@ function RecommendationRequestForm({
               data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
               type="datetime-local"
-              step="1"
-              defaultValue="2026-05-02T12:34:56"
+              step="1" // necessary to allow update with seconds
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: true,
@@ -138,8 +138,7 @@ function RecommendationRequestForm({
               data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"
               type="datetime-local"
-              step="1"
-              defaultValue="2026-05-02T12:34:56"
+              step="1" // necessary to allow update with seconds
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: true,

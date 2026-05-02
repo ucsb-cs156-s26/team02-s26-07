@@ -1,7 +1,8 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import RecommendationRequestForm, {
-  removeZ,
-} from "main/components/RecommendationRequests/RecommendationRequestForm";
+// import RecommendationRequestForm, {
+//   removeZ,
+// } from "main/components/RecommendationRequests/RecommendationRequestForm";
+import RecommendationRequestForm from "main/components/RecommendationRequests/RecommendationRequestForm";
 import { recommendationRequestsFixtures } from "fixtures/recommendationRequestsFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
@@ -16,10 +17,10 @@ vi.mock("react-router", async () => {
 });
 
 describe("RecommendationRequestForm tests", () => {
-  test("that removeZ works", () => {
-    expect(removeZ("ABC")).toBe("ABC");
-    expect(removeZ("ABCZ")).toBe("ABC");
-  });
+  //   test("that removeZ works", () => {
+  //     expect(removeZ("ABC")).toBe("ABC");
+  //     expect(removeZ("ABCZ")).toBe("ABC");
+  //   });
 
   test("renders correctly", async () => {
     render(
