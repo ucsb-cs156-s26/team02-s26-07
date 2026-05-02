@@ -28,14 +28,6 @@ function RecommendationRequestForm({
   } = useForm({ defaultValues });
   // Stryker restore all
 
-  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-  // Note that even this complex regex may still need some tweaks
-
-  // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  // Stryker restore Regex
-
   const navigate = useNavigate();
 
   return (
@@ -126,10 +118,10 @@ function RecommendationRequestForm({
               id="dateRequested"
               type="datetime-local"
               step="1"
+              defaultValue="2026-05-02T12:34:56"
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: true,
-                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -147,10 +139,10 @@ function RecommendationRequestForm({
               id="dateNeeded"
               type="datetime-local"
               step="1"
+              defaultValue="2026-05-02T12:34:56"
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: true,
-                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
