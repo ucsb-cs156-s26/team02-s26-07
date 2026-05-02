@@ -7,6 +7,11 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
+vi.mock("react-toastify", () => ({
+  toast: vi.fn(),
+}));
+import { toast } from "react-toastify"; // for stryker
+
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
   const originalModule = await vi.importActual("react-router");
@@ -135,6 +140,10 @@ describe("UserTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "2",
     );
+    // for stryker
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-done`),
+    ).toHaveTextContent("Yes");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -228,5 +237,10 @@ describe("UserTable tests", () => {
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
+    // for stryker
+    expect(axiosMock.history.delete[0].url).toBe("/api/recommendationrequests");
+    expect(toast).toHaveBeenCalledWith({
+      message: "RecommendationRequest deleted",
+    });
   });
 });
