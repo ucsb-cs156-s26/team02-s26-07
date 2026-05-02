@@ -17,13 +17,7 @@ function RecommendationRequestForm({
 
   const navigate = useNavigate();
 
-  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-  // Note that even this complex regex may still need some tweaks
-
-  // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  // Stryker restore Regex
+  // deleted regex because it conflicts with HTML datetime-local native validation upon attempting UPDATE
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -115,7 +109,6 @@ function RecommendationRequestForm({
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: true,
-                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -135,7 +128,6 @@ function RecommendationRequestForm({
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: true,
-                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
