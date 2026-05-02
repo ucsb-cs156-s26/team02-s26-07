@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -246,22 +246,7 @@
 <a name='L181'></a><a href='#L181'>181</a>
 <a name='L182'></a><a href='#L182'>182</a>
 <a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a>
-<a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<a name='L184'></a><a href='#L184'>184</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,7 +254,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,19 +277,9 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -451,39 +433,32 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 &nbsp;
-export function removeZ(myString) {
-  // removes timezone, to be added back upon Create/Update. separated out for mutation testing
-  return myString.replace("Z", "");
-}
+// export function removeZ(myString) {
+//   // removes timezone, to be added back upon Create/Update. separated out for mutation testing
+//   return myString.replace("Z", "");
+// }
 &nbsp;
 function RecommendationRequestForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
 }) {
-  const defaultValues = initialContents
-    ? {
-        ...initialContents,
-        dateRequested: removeZ(initialContents.dateRequested),
-        dateNeeded: removeZ(initialContents.dateNeeded),
-      }
-    : {};
+  // const defaultValues = initialContents
+  //   ? {
+  //       ...initialContents,
+  //       dateRequested: removeZ(initialContents.dateRequested),
+  //       dateNeeded: removeZ(initialContents.dateNeeded),
+  //     }
+  //   : {};
 &nbsp;
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues });
+    // } = useForm({ defaultValues });
+  } = useForm({ defaultValues: initialContents || {} });
   // Stryker restore all
-&nbsp;
-  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-  // Note that even this complex regex may still need some tweaks
-&nbsp;
-  // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  // Stryker restore Regex
 &nbsp;
   const navigate = useNavigate();
 &nbsp;
@@ -574,11 +549,10 @@ function RecommendationRequestForm({
               data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
               type="datetime-local"
-              step="1"
+              step="1" // necessary to allow update with seconds
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: true,
-                pattern: isodate_regex,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
@@ -595,11 +569,10 @@ function RecommendationRequestForm({
               data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"
               type="datetime-local"
-              step="1"
+              step="1" // necessary to allow update with seconds
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: true,
-                pattern: isodate_regex,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
@@ -646,7 +619,7 @@ export default RecommendationRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-02T09:42:17.312Z
+                at 2026-05-02T09:54:35.118Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
