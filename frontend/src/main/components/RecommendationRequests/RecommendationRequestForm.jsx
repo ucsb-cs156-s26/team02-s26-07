@@ -2,17 +2,29 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
+export function removeZ(myString) {
+  // removes timezone, to be added back upon Create/Update. separated out for mutation testing
+  return myString.replace("Z","")
+}
+
 function RecommendationRequestForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
 }) {
+
+  const defaultValues = initialContents ? {
+    ...initialContents,
+    dateRequested: removeZ(initialContents.dateRequested),
+    dateNeeded: removeZ(initialContents.dateNeeded)
+  } || {};
+
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm({ defaultValues });
   // Stryker restore all
 
   const navigate = useNavigate();
