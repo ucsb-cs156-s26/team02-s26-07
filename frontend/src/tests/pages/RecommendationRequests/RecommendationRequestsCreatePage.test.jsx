@@ -117,7 +117,7 @@ describe("RecommendationRequestsCreatePage tests", () => {
     fireEvent.change(dateNeededField, {
       target: { value: "2073-02-02T00:00" },
     });
-    fireEvent.change(doneField, { target: { checked: false } });
+    fireEvent.click(doneField);
 
     expect(submitButton).toBeInTheDocument();
 

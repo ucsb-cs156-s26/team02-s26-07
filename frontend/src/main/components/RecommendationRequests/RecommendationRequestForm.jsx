@@ -142,7 +142,7 @@ function RecommendationRequestForm({
               id="done"
               label="Done"
               type="checkbox"
-              {...register("done")}
+              {...register("done", { valueAsBoolean: true })}
             />
           </Form.Group>
         </Col>

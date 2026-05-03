@@ -234,7 +234,7 @@ describe("RecommendationRequestsEditPage tests", () => {
       fireEvent.change(dateNeededField, {
         target: { value: "2024-03-14T15:00" },
       });
-      fireEvent.change(doneField, { target: { checked: false } });
+      fireEvent.click(doneField);
 
       fireEvent.click(submitButton);
 
