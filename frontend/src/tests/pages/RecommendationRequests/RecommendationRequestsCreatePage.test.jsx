@@ -126,17 +126,16 @@ describe("RecommendationRequestsCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      id: 17,
       requesterEmail: "wer@uni.com",
       professorEmail: "abo@cob.org",
       explanation: "Salutations",
-      dateRequested: "2072-01-02T12:00:00",
-      dateNeeded: "2073-01-02T12:00:01",
+      dateRequested: "2072-02-02T00:00",
+      dateNeeded: "2073-02-02T00:00",
       done: false,
     });
 
     expect(mockToast).toBeCalledWith(
-      "New recommendationRequest Created - id: 17 explanation: Salutations",
+      "New recommendationRequest Created - id: 17 explanation: HELP MEE", // initial, not after edit
     );
     expect(mockNavigate).toBeCalledWith({ to: "/recommendationrequests" });
   });
