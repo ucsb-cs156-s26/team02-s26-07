@@ -173,7 +173,7 @@ describe("RecommendationRequestsEditPage tests", () => {
       expect(explanationField).toHaveValue("Pi Day");
       expect(dateRequestedField).toHaveValue("2022-03-14T15:00");
       expect(dateNeededField).toHaveValue("2023-03-14T15:00");
-      expect(doneField).toHaveValue("true");
+      expect(doneField).toBeChecked();
       expect(submitButton).toBeInTheDocument();
     });
 
@@ -215,7 +215,7 @@ describe("RecommendationRequestsEditPage tests", () => {
       expect(explanationField).toHaveValue("Pi Day");
       expect(dateRequestedField).toHaveValue("2022-03-14T15:00");
       expect(dateNeededField).toHaveValue("2023-03-14T15:00");
-      expect(doneField).toHaveValue("true");
+      expect(doneField).toBeChecked();
 
       expect(submitButton).toBeInTheDocument();
 
@@ -234,7 +234,7 @@ describe("RecommendationRequestsEditPage tests", () => {
       fireEvent.change(dateNeededField, {
         target: { value: "2024-03-14T15:00" },
       });
-      fireEvent.change(doneField, { target: { value: false } });
+      fireEvent.change(doneField, { target: { checked: false } });
 
       fireEvent.click(submitButton);
 
