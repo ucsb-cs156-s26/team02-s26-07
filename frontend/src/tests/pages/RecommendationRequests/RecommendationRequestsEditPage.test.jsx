@@ -234,8 +234,10 @@ describe("RecommendationRequestsEditPage tests", () => {
       fireEvent.change(dateNeededField, {
         target: { value: "2024-03-14T15:00" },
       });
+      
       fireEvent.click(doneField);
-
+      expect(doneField).not.toBeChecked();
+      
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());

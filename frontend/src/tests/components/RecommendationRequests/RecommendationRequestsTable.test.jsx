@@ -74,7 +74,7 @@ describe("UserTable tests", () => {
       "1",
     );
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "2",
+      "62",
     );
 
     const editButton = screen.queryByTestId(
