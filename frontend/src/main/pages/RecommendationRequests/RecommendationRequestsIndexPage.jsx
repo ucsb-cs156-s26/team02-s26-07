@@ -24,7 +24,7 @@ export default function RecommendationRequestsIndexPage() {
   };
 
   const {
-    data: dates,
+    data: recommendationrequests,
     error: _error,
     status: _status,
   } = useBackend(
@@ -39,7 +39,7 @@ export default function RecommendationRequestsIndexPage() {
       <div className="pt-2">
         {createButton()}
         <h1>RecommendationRequests</h1>
-        <RecommendationRequestsTable dates={dates} currentUser={currentUser} />
+        <RecommendationRequestsTable recommendationrequests={recommendationrequests} currentUser={currentUser} />
       </div>
     </BasicLayout>
   );
