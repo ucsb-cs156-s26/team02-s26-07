@@ -69,7 +69,7 @@ describe("RecommendationRequestsCreatePage tests", () => {
       explanation: "HELP MEE",
       dateRequested: "2022-01-02T12:00:00",
       dateNeeded: "2023-01-02T12:00:01",
-      done: true,
+      done: true, // note that this is NOT actually the initial value for doneField
     };
 
     axiosMock
@@ -117,6 +117,7 @@ describe("RecommendationRequestsCreatePage tests", () => {
     fireEvent.change(dateNeededField, {
       target: { value: "2073-02-02T00:00" },
     });
+    fireEvent.click(doneField);
     fireEvent.click(doneField);
 
     expect(submitButton).toBeInTheDocument();
