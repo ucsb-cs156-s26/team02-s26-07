@@ -124,9 +124,7 @@ describe("ArticlesEditPage tests", () => {
       );
       await screen.findByText(/Welcome/);
       await screen.findByTestId("ArticleForm-dateAdded");
-      expect(
-        screen.getByTestId("ArticleForm-dateAdded"),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId("ArticleForm-dateAdded")).toBeInTheDocument();
     });
 
     test("Is populated with the data provided", async () => {
@@ -187,10 +185,12 @@ describe("ArticlesEditPage tests", () => {
       expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(titlef, { target: { value: "title2" } });
-      fireEvent.change(urlf, { target: { value: "http://first.articles.com" } });
+      fireEvent.change(urlf, {
+        target: { value: "http://first.articles.com" },
+      });
       fireEvent.change(explanationf, { target: { value: "explanation" } });
       fireEvent.change(emailf, { target: { value: "anotheremail@email.com" } });
-      fireEvent.change(dateAddedf, {target: { value: "2022-12-25T08:00" }, });
+      fireEvent.change(dateAddedf, { target: { value: "2022-12-25T08:00" } });
 
       fireEvent.click(submitButton);
 
