@@ -2,7 +2,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-function ArticlesForm({
+function ArticleForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
@@ -149,7 +149,7 @@ function ArticlesForm({
 
       <Row>
         <Col>
-          <Button type="submit" data-testid="ArticlesForm-submit">
+          <Button type="submit" data-testid="ArticleForm-submit">
             {buttonLabel}
           </Button>
           <Button
@@ -165,4 +165,4 @@ function ArticlesForm({
   );
 }
 
-export default ArticlesForm;
+export default ArticleForm;
