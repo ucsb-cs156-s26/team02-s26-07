@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import {toast} from "react-toastify"
 
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -214,5 +215,8 @@ describe("UserTable tests", () => {
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
+
+    expect(axiosMock.history.delete[0].url).toBe("/api/articles");
+    expect(toast).toHaveBeenCalledWith({message:"Article deleted."})
   });
 });
