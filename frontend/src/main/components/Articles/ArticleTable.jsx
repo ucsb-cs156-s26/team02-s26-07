@@ -2,12 +2,21 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import {
-  onDeleteSuccess,
-  cellToAxiosParamsDelete,
-} from "main/utils/ArticleUtils";
+//import {
+//  onDeleteSuccess,
+//  cellToAxiosParamsDelete,
+//} from "main/utils/ArticleUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
+
+function psppsp(cell) {
+  return {
+    method: "DELETE",
+    params: {
+      id: cell.row.original.id,
+    },
+  };
+}
 
 export default function ArticleTable({ dates, currentUser }) {
   const navigate = useNavigate();
@@ -18,12 +27,15 @@ export default function ArticleTable({ dates, currentUser }) {
 
   // Stryker disable all : hard to test for query caching
 
-  const deleteMutation = useBackendMutation(
-    cellToAxiosParamsDelete,
-    { onSuccess: onDeleteSuccess },
-    ["/api/articles/all"],
-  );
+  //const deleteMutation = useBackendMutation(
+  //  cellToAxiosParamsDelete,
+  //  { onSuccess: onDeleteSuccess },
+  //  ["/api/articles/all"],
+  //);
   // Stryker restore all
+  const deleteMutation = useBackendMutation(
+    psppsp,
+    {},["/api/articles/all"], );
 
   // Stryker disable next-line all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
