@@ -92,16 +92,16 @@ function ArticleForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
-              data-testid="ArticleForm-emial"
-              id="emial"
+              data-testid="ArticleForm-email"
+              id="email"
               type="text"
-              isInvalid={Boolean(errors.emial)}emial
-              {...register("emial", {
-                required: "emial is required.",
+              isInvalid={Boolean(errors.email)}
+              {...register("email", {
+                required: "email is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.emial?.message}
+              {errors.email?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
