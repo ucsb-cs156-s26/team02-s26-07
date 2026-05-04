@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { ArticlesFixtures } from "fixtures/articlesFixtures";
-import ArticleTable from "main/components/Article/ArticleTable";
+import ArticleTable from "main/components/Articles/ArticleTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
