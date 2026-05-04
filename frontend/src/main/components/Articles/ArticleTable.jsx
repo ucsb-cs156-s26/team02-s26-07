@@ -2,14 +2,10 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-//import {
-//  onDeleteSuccess,
-//  cellToAxiosParamsDelete,
-//} from "main/utils/ArticleUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-function psppsp(cell) {
+function functionputin(cell) {
   return {
     method: "DELETE",
     params: {
@@ -34,8 +30,8 @@ export default function ArticleTable({ dates, currentUser }) {
   //);
   // Stryker restore all
   const deleteMutation = useBackendMutation(
-    psppsp,
-    {},["/api/articles/all"], );
+    functionputin,
+    {});
 
   // Stryker disable next-line all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
