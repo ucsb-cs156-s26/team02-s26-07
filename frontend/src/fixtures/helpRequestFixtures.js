@@ -40,4 +40,4 @@ const helpRequestFixtures = {
   ],
 };
 
-export { ucsbDatesFixtures };
+export { helpRequestFixtures };
