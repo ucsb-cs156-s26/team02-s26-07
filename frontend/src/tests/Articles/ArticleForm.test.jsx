@@ -50,9 +50,7 @@ describe("ArticleForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/dateAdded is required/);
-    expect(
-      screen.getByText(/dateAdded is required/),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/dateAdded is required/)).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {
