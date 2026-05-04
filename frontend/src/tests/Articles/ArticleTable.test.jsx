@@ -6,6 +6,8 @@ import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+
+vi.mock("react-toastify", () => ({toast: vi.fn()}));
 import { toast } from "react-toastify";
 
 const mockedNavigate = vi.fn();
