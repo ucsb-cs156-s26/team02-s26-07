@@ -2,19 +2,12 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import { onDeleteSuccess } from "main/utils/UCSBDateUtils";
+import {
+  onDeleteSuccess,
+  cellToAxiosParamsDelete,
+} from "main/utils/ArticleUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
-
-function cellToAxiosParamsDelete(cell) {
-  return {
-    url: "/api/articles",
-    method: "DELETE",
-    params: {
-      id: cell.row.original.id,
-    },
-  };
-}
 
 export default function ArticleTable({ dates, currentUser }) {
   const navigate = useNavigate();
@@ -65,9 +58,7 @@ export default function ArticleTable({ dates, currentUser }) {
   ];
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
-    columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "ArticleTable"),
-    );
+    columns.push(ButtonColumn("Edit", "primary", editCallback, "ArticleTable"));
     columns.push(
       ButtonColumn("Delete", "danger", deleteCallback, "ArticleTable"),
     );
