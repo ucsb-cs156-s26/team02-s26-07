@@ -36,7 +36,7 @@ function ArticlesForm({
             <Form.Group className="mb-3">
               <Form.Label htmlFor="id">Id</Form.Label>
               <Form.Control
-                data-testid="ArticlesForm-id"
+                data-testid="ArticleForm-id"
                 id="id"
                 type="text"
                 {...register("id")}
@@ -51,7 +51,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="localDateTime">DateAdded (iso format)</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-dateAdded"
+              data-testid="ArticleForm-dateAdded"
               id="dateAdded"
               type="datetime-local"
               isInvalid={Boolean(errors.localDateTime)}
@@ -72,7 +72,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="title">Title</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-title"
+              data-testid="ArticleForm-title"
               id="title"
               type="text"
               isInvalid={Boolean(errors.title)}
@@ -92,7 +92,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-emial"
+              data-testid="ArticleForm-emial"
               id="emial"
               type="text"
               isInvalid={Boolean(errors.emial)}emial
@@ -112,7 +112,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="url">Url</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-url"
+              data-testid="ArticleForm-url"
               id="url"
               type="text"
               isInvalid={Boolean(errors.url)}
@@ -132,7 +132,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="explanation">Explanation</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-explanation"
+              data-testid="ArticleForm-explanation"
               id="explanation"
               type="text"
               isInvalid={Boolean(errors.explanation)}
@@ -155,7 +155,7 @@ function ArticlesForm({
           <Button
             variant="Secondary"
             onClick={() => navigate(-1)}
-            data-testid="ArticlesForm-cancel"
+            data-testid="ArticleForm-cancel"
           >
             Cancel
           </Button>
