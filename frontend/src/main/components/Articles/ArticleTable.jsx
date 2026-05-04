@@ -29,9 +29,7 @@ export default function ArticleTable({ dates, currentUser }) {
   //  ["/api/articles/all"],
   //);
   // Stryker restore all
-  const deleteMutation = useBackendMutation(
-    functionputin,
-    {});
+  const deleteMutation = useBackendMutation(functionputin, {});
 
   // Stryker disable next-line all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
