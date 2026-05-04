@@ -7,7 +7,7 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-vi.mock("react-toastify", () => ({toast: vi.fn()}));
+vi.mock("react-toastify", () => ({ toast: vi.fn() }));
 import { toast } from "react-toastify";
 
 const mockedNavigate = vi.fn();
@@ -219,6 +219,6 @@ describe("UserTable tests", () => {
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
 
     expect(axiosMock.history.delete[0].url).toBe("/api/articles");
-    expect(toast).toHaveBeenCalledWith({ message: "Article deleted.", });
+    expect(toast).toHaveBeenCalledWith({ message: "Article deleted" });
   });
 });
