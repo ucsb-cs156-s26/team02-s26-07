@@ -19,6 +19,11 @@ function HelpRequestForm({
 
   const testIdPrefix = "HelpRequestForm";
 
+  // Stryker disable Regex
+  const isodate_regex =
+    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  // Stryker restore Regex
+
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       {initialContents && (
@@ -68,6 +73,39 @@ function HelpRequestForm({
         />
         <Form.Control.Feedback type="invalid">
           {errors.teamId?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+      
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="tableOrBreakoutRoom">Table or Breakout Room</Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-tableOrBreakoutRoom"}
+          id="tableOrBreakoutRoom"
+          type="text"
+          isInvalid={Boolean(errors.tableOrBreakoutRoom)}
+          {...register("tableOrBreakoutRoom", {
+            required: "Table or Breakout Room is required.",
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.tableOrBreakoutRoom?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="requestTime">Request Time (in UTC)</Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-requestTime"}
+          id="requestTime"
+          type="datetime-local"
+          isInvalid={Boolean(errors.requestTime)}
+          {...register("requestTime", {
+            required: true,
+            pattern: isodate_regex,
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.requestTime && "Request Time is required. "}
         </Form.Control.Feedback>
       </Form.Group>
 
