@@ -12,7 +12,12 @@ function HelpRequestForm({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm({
+    defaultValues: {
+      solved: false,
+      ...(initialContents || {}),
+    },
+  });
   // Stryker restore all
 
   const navigate = useNavigate();
@@ -108,6 +113,36 @@ function HelpRequestForm({
         />
         <Form.Control.Feedback type="invalid">
           {errors.requestTime && "Request Time is required. "}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="explanation">Explanation</Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-explanation"}
+          id="explanation"
+          type="text"
+          isInvalid={Boolean(errors.explanation)}
+          {...register("explanation", {
+            required: "Explanation is required.",
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.explanation?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="solved">Solved</Form.Label>
+        <Form.Check
+          data-testid={testIdPrefix + "-solved"}
+          id="solved"
+          type="checkbox"
+          isInvalid={Boolean(errors.solved)}
+          {...register("solved")}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.solved?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
