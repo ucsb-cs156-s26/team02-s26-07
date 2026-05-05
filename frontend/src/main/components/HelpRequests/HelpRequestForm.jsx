@@ -14,8 +14,8 @@ function HelpRequestForm({
     handleSubmit,
   } = useForm({
     defaultValues: {
-      solved: false,
       ...(initialContents || {}),
+      solved: initialContents?.solved ?? false,
     },
   });
   // Stryker restore all
@@ -105,6 +105,7 @@ function HelpRequestForm({
           data-testid={testIdPrefix + "-requestTime"}
           id="requestTime"
           type="datetime-local"
+          step="1"
           isInvalid={Boolean(errors.requestTime)}
           {...register("requestTime", {
             required: true,
