@@ -20,9 +20,9 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm />
       </Router>,
     );
-    await screen.findByText(/Requester Email/);
-    await screen.findByText(/Create/);
-    expect(screen.getByText(/Requester Email/)).toBeInTheDocument();
+    await screen.findByTestId(/HelpRequestForm-requesterEmail/);
+    await screen.findByTestId(/HelpRequestForm-submit/);
+    expect(screen.getByTestId(/HelpRequestForm-requesterEmail/)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in a HelpRequest", async () => {
