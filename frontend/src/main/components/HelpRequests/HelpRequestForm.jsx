@@ -50,10 +50,11 @@ function HelpRequestForm({
         <Form.Control
           data-testid={"HelpRequestForm-requesterEmail"}
           id="requesterEmail"
-          type="text"
+          type="email"
+          placeholder="name@example.com"
           isInvalid={Boolean(errors.requesterEmail)}
           {...register("requesterEmail", {
-            required: "Requester Email is required.",
+            required: true,
             maxLength: {
               value: 255,
               message: "Max length 255 characters",
@@ -61,7 +62,7 @@ function HelpRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.requesterEmail?.message}
+          {errors.requesterEmail && "RequesterEmail is required. "}
         </Form.Control.Feedback>
       </Form.Group>
 
