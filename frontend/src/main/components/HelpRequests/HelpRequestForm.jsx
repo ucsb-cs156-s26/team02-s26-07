@@ -35,7 +35,7 @@ function HelpRequestForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="id">Id</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "-id"}
+            data-testid={"HelpRequestForm-id"}
             id="id"
             type="text"
             {...register("id")}
