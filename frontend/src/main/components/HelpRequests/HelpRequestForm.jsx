@@ -48,7 +48,7 @@ function HelpRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-requesterEmail"}
+          data-testid={"HelpRequestForm-requesterEmail"}
           id="requesterEmail"
           type="text"
           isInvalid={Boolean(errors.requesterEmail)}
@@ -68,7 +68,7 @@ function HelpRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="teamId">Team Id</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-teamId"}
+          data-testid={"HelpRequestForm-teamId"}
           id="teamId"
           type="text"
           isInvalid={Boolean(errors.teamId)}
@@ -86,7 +86,7 @@ function HelpRequestForm({
           Table or Breakout Room
         </Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-tableOrBreakoutRoom"}
+          data-testid={"HelpRequestForm-tableOrBreakoutRoom"}
           id="tableOrBreakoutRoom"
           type="text"
           isInvalid={Boolean(errors.tableOrBreakoutRoom)}
@@ -102,7 +102,7 @@ function HelpRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="requestTime">Request Time</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-requestTime"}
+          data-testid={"HelpRequestForm-requestTime"}
           id="requestTime"
           type="datetime-local"
           step="1"
@@ -120,7 +120,7 @@ function HelpRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="explanation">Explanation</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-explanation"}
+          data-testid={"HelpRequestForm-explanation"}
           id="explanation"
           type="text"
           isInvalid={Boolean(errors.explanation)}
@@ -136,7 +136,7 @@ function HelpRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="solved">Solved</Form.Label>
         <Form.Check
-          data-testid={testIdPrefix + "-solved"}
+          data-testid={"HelpRequestForm-solved"}
           id="solved"
           type="checkbox"
           isInvalid={Boolean(errors.solved)}
