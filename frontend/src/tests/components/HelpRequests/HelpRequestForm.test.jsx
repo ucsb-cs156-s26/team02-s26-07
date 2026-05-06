@@ -22,7 +22,9 @@ describe("HelpRequestForm tests", () => {
     );
     await screen.findByTestId(/HelpRequestForm-requesterEmail/);
     await screen.findByTestId(/HelpRequestForm-submit/);
-    expect(screen.getByTestId(/HelpRequestForm-requesterEmail/)).toBeInTheDocument();
+    expect(
+      screen.getByTestId(/HelpRequestForm-requesterEmail/),
+    ).toBeInTheDocument();
   });
 
   test("renders correctly when passing in a HelpRequest", async () => {
