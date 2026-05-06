@@ -112,7 +112,7 @@ describe("HelpRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     expect(
-        await screen.findByText(/Max length 255 characters/),
+      await screen.findByText(/Max length 255 characters/),
     ).toBeInTheDocument();
-    });
+  });
 });
