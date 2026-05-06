@@ -54,7 +54,7 @@ function HelpRequestForm({
           placeholder="name@example.com"
           isInvalid={Boolean(errors.requesterEmail)}
           {...register("requesterEmail", {
-            required: true,
+            required: "Requester Email is required.",
             maxLength: {
               value: 255,
               message: "Max length 255 characters",
@@ -62,7 +62,7 @@ function HelpRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.requesterEmail && "RequesterEmail is required. "}
+          {errors.requesterEmail?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -92,7 +92,7 @@ function HelpRequestForm({
           type="text"
           isInvalid={Boolean(errors.tableOrBreakoutRoom)}
           {...register("tableOrBreakoutRoom", {
-            required: "Table or Breakout Room is required.",
+            required: "Table or Breakout Room is required",
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -114,7 +114,7 @@ function HelpRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.requestTime && "Request Time is required. "}
+          {errors.requestTime && "Request Time is required"}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -126,7 +126,7 @@ function HelpRequestForm({
           type="text"
           isInvalid={Boolean(errors.explanation)}
           {...register("explanation", {
-            required: "Explanation is required.",
+            required: "Explanation is required",
           })}
         />
         <Form.Control.Feedback type="invalid">
