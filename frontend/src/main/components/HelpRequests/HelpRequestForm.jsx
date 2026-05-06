@@ -100,7 +100,7 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="requestTime">Request Time (in UTC)</Form.Label>
+        <Form.Label htmlFor="requestTime">Request Time</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-requestTime"}
           id="requestTime"
