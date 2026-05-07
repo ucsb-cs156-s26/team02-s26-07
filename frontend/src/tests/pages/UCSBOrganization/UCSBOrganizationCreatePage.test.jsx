@@ -85,6 +85,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
       ).toBeInTheDocument();
     });
 
+    const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
     const orgTranslationShortField = screen.getByTestId(
       "UCSBOrganizationForm-orgTranslationShort",
     );
@@ -93,6 +94,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     );
     const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
+    fireEvent.change(orgCodeField, { target: { value: "ZPR" } });
     fireEvent.change(orgTranslationShortField, {
       target: { value: "ZETA PHI RHO" },
     });
@@ -106,7 +108,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      orgCode: undefined,
+      orgCode: "ZPR",
       orgTranslationShort: "ZETA PHI RHO",
       orgTranslation: "ZETA PHI RHO FRATERNITY",
       inactive: false,

@@ -111,12 +111,14 @@ describe("UCSBOrganizationForm tests", () => {
       </QueryClientProvider>,
     );
 
+    const orgCodeField = screen.getByTestId(`${testId}-orgCode`);
     const orgTranslationShortField = screen.getByTestId(
       `${testId}-orgTranslationShort`,
     );
     const orgTranslationField = screen.getByTestId(`${testId}-orgTranslation`);
     const submitButton = screen.getByTestId(`${testId}-submit`);
 
+    fireEvent.change(orgCodeField, { target: { value: "ZPR" } });
     fireEvent.change(orgTranslationShortField, {
       target: { value: "ZETA PHI RHO" },
     });
@@ -134,6 +136,7 @@ describe("UCSBOrganizationForm tests", () => {
       screen.queryByText(/Organization Translation is required./),
     ).not.toBeInTheDocument();
   });
+
   test("that the inactive checkbox is present", async () => {
     render(
       <QueryClientProvider client={queryClient}>
