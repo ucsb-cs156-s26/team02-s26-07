@@ -19,6 +19,10 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+
 import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
@@ -143,20 +147,24 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/placeholder" element={<PlaceholderIndexPage />} />
+          <Route
+            exact
+            path="/ucsborganization"
+            element={<UCSBOrganizationIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
             exact
-            path="/placeholder/edit/:id"
-            element={<PlaceholderEditPage />}
+            path="/ucsborganization/edit/:id"
+            element={<UCSBOrganizationEditPage />}
           />
           <Route
             exact
-            path="/placeholder/create"
-            element={<PlaceholderCreatePage />}
+            path="/ucsborganization/create"
+            element={<UCSBOrganizationCreatePage />}
           />
         </>
       )}
@@ -180,6 +188,25 @@ function App() {
             exact
             path="/diningcommonsmenuitem/create"
             element={<UCSBDiningCommonsMenuItemCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route exact path="/placeholder" element={<PlaceholderIndexPage />} />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/placeholder/edit/:id"
+            element={<PlaceholderEditPage />}
+          />
+          <Route
+            exact
+            path="/placeholder/create"
+            element={<PlaceholderCreatePage />}
           />
         </>
       )}
