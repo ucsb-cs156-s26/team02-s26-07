@@ -9,7 +9,6 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
     url: "/api/ucsborganizations/post",
     method: "POST",
     params: {
-      orgCode: ucsbOrganization.orgCode,
       orgTranslationShort: ucsbOrganization.orgTranslationShort,
       orgTranslation: ucsbOrganization.orgTranslation,
       inactive: ucsbOrganization.inactive,
