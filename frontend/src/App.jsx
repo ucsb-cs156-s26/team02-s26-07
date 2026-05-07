@@ -170,7 +170,11 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/diningcommonsmenuitem" element={<PlaceholderIndexPage />} />
+          <Route
+            exact
+            path="/diningcommonsmenuitem"
+            element={<PlaceholderIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
