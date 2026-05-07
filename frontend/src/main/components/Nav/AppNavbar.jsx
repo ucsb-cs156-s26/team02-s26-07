@@ -10,14 +10,12 @@ export default function AppNavbar({
   currentUrl = window.location.href,
 }) {
   var oauthLogin = systemInfo?.oauthLogin || "/oauth2/authorization/google";
-
   return (
     <>
       {(currentUrl.startsWith("http://localhost:3000") ||
         currentUrl.startsWith("http://127.0.0.1:3000")) && (
         <AppNavbarLocalhost url={currentUrl} />
       )}
-
       <Navbar
         expand="xl"
         variant="dark"
@@ -29,9 +27,7 @@ export default function AppNavbar({
           <Navbar.Brand as={Link} to="/">
             team02
           </Navbar.Brand>
-
           <Navbar.Toggle />
-
           <Nav className="me-auto">
             {systemInfo?.springH2ConsoleEnabled && (
               <>
@@ -44,11 +40,9 @@ export default function AppNavbar({
               </>
             )}
           </Nav>
-
           <>
             {/* be sure that each NavDropdown has a unique id and data-testid  */}
           </>
-
           <Navbar.Collapse className="justify-content-between">
             <Nav className="mr-auto">
               {hasRole(currentUser, "ROLE_ADMIN") && (
@@ -68,6 +62,9 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/ucsbdates">
                     UCSB Dates
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/articles">
+                    Articles
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/recommendationrequests">
                     Recommendation Requests
                   </Nav.Link>
@@ -82,7 +79,6 @@ export default function AppNavbar({
                 <></>
               )}
             </Nav>
-
             <Nav className="ml-auto">
               {currentUser && currentUser.loggedIn ? (
                 <>
