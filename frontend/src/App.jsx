@@ -18,6 +18,7 @@ import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+
 import RecommendationRequestsIndexPage from "main/pages/RecommendationRequests/RecommendationRequestsIndexPage";
 import RecommendationRequestsCreatePage from "main/pages/RecommendationRequests/RecommendationRequestsCreatePage";
 import RecommendationRequestsEditPage from "main/pages/RecommendationRequests/RecommendationRequestsEditPage";
@@ -100,6 +101,9 @@ function App() {
             exact
             path="/articles/create"
             element={<ArticlesCreatePage />}
+          />
+          <Route
+            exact
             path="/recommendationrequests/edit/:id"
             element={<RecommendationRequestsEditPage />}
           />
