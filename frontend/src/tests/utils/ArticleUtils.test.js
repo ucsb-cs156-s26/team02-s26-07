@@ -1,7 +1,7 @@
 import {
   onDeleteSuccess,
   cellToAxiosParamsDelete,
-} from "main/utils/recommendationRequestUtils";
+} from "main/utils/ArticleUtils";
 import mockConsole from "tests/testutils/mockConsole";
 
 const mockToast = vi.fn();
@@ -13,7 +13,7 @@ vi.mock("react-toastify", async (importOriginal) => {
   };
 });
 
-describe("recommendationRequestUtils", () => {
+describe("ArticleUtils", () => {
   describe("onDeleteSuccess", () => {
     test("It puts the message on console.log and in a toast", () => {
       // arrange
@@ -41,7 +41,7 @@ describe("recommendationRequestUtils", () => {
 
       // assert
       expect(result).toEqual({
-        url: "/api/recommendationrequests",
+        url: "/api/articles",
         method: "DELETE",
         params: { id: 17 },
       });
