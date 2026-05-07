@@ -115,6 +115,6 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(mockToast).toBeCalledWith(
       "New UCSBOrganization Created - orgCode: ZPR orgTranslationShort: ZETA PHI RHO",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganization" });
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
   });
 });

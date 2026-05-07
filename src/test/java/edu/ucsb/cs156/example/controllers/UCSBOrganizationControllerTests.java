@@ -37,19 +37,19 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
   @Test
   public void logged_out_users_cannot_get_all() throws Exception {
-    mockMvc.perform(get("/api/UCSBOrganization/all")).andExpect(status().is(403));
+    mockMvc.perform(get("/api/ucsborganizations/all")).andExpect(status().is(403));
   }
 
   @WithMockUser(roles = {"USER"})
   @Test
   public void logged_in_users_can_get_all() throws Exception {
-    mockMvc.perform(get("/api/UCSBOrganization/all")).andExpect(status().is(200));
+    mockMvc.perform(get("/api/ucsborganizations/all")).andExpect(status().is(200));
   }
 
   @Test
   public void logged_out_users_cannot_get_by_id() throws Exception {
     mockMvc
-        .perform(get("/api/UCSBOrganization").param("orgCode", "ZPR"))
+        .perform(get("/api/ucsborganizations").param("orgCode", "ZPR"))
         .andExpect(status().is(403));
   }
 
@@ -57,7 +57,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
   public void logged_out_users_cannot_post() throws Exception {
     mockMvc
         .perform(
-            post("/api/UCSBOrganization/post")
+            post("/api/ucsborganizations/post")
                 .param("orgCode", "ZPR")
                 .param("orgTranslationShort", "Zeta Phi Rho")
                 .param("orgTranslation", "Zeta Phi Rho Fraternity")
@@ -71,7 +71,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
   public void logged_in_regular_users_cannot_post() throws Exception {
     mockMvc
         .perform(
-            post("/api/UCSBOrganization/post")
+            post("/api/ucsborganizations/post")
                 .param("orgCode", "ZPR")
                 .param("orgTranslationShort", "Zeta Phi Rho")
                 .param("orgTranslation", "Zeta Phi Rho Fraternity")
@@ -105,7 +105,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     when(ucsbOrganizationRepository.findAll()).thenReturn(expectedOrgs);
 
     MvcResult response =
-        mockMvc.perform(get("/api/UCSBOrganization/all")).andExpect(status().isOk()).andReturn();
+        mockMvc.perform(get("/api/ucsborganizations/all")).andExpect(status().isOk()).andReturn();
 
     verify(ucsbOrganizationRepository, times(1)).findAll();
     String expectedJson = mapper.writeValueAsString(expectedOrgs);
@@ -128,7 +128,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
     MvcResult response =
         mockMvc
-            .perform(get("/api/UCSBOrganization").param("orgCode", "ZPR"))
+            .perform(get("/api/ucsborganizations").param("orgCode", "ZPR"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -145,7 +145,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
     MvcResult response =
         mockMvc
-            .perform(get("/api/UCSBOrganization").param("orgCode", "DNE"))
+            .perform(get("/api/ucsborganizations").param("orgCode", "DNE"))
             .andExpect(status().isNotFound())
             .andReturn();
 
@@ -171,7 +171,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/UCSBOrganization/post")
+                post("/api/ucsborganizations/post")
                     .param("orgCode", "ZPR")
                     .param("orgTranslationShort", "Zeta Phi Rho")
                     .param("orgTranslation", "Zeta Phi Rho Fraternity")
@@ -202,7 +202,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/UCSBOrganization/post")
+                post("/api/ucsborganizations/post")
                     .param("orgCode", "OSLI")
                     .param("orgTranslationShort", "Student Life")
                     .param("orgTranslation", "Office of Student Life")
@@ -243,7 +243,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                put("/api/UCSBOrganization")
+                put("/api/ucsborganizations")
                     .param("orgCode", "ZPR")
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding("utf-8")
@@ -276,7 +276,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                put("/api/UCSBOrganization")
+                put("/api/ucsborganizations")
                     .param("orgCode", "DNE")
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding("utf-8")
@@ -305,7 +305,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "ZPR").with(csrf()))
+            .perform(delete("/api/ucsborganizations").param("orgCode", "ZPR").with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -323,7 +323,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "DNE").with(csrf()))
+            .perform(delete("/api/ucsborganizations").param("orgCode", "DNE").with(csrf()))
             .andExpect(status().isNotFound())
             .andReturn();
 
