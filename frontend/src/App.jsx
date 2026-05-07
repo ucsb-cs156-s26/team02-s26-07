@@ -173,7 +173,7 @@ function App() {
           <Route
             exact
             path="/diningcommonsmenuitem"
-            element={<PlaceholderIndexPage />}
+            element={<UCSBDiningCommonsMenuItemIndexPage />}
           />
         </>
       )}
@@ -182,12 +182,12 @@ function App() {
           <Route
             exact
             path="/diningcommonsmenuitem/edit/:id"
-            element={<PlaceholderEditPage />}
+            element={<UCSBDiningCommonsMenuItemEditPage />}
           />
           <Route
             exact
             path="/diningcommonsmenuitem/create"
-            element={<PlaceholderCreatePage />}
+            element={<UCSBDiningCommonsMenuItemCreatePage />}
           />
         </>
       )}
