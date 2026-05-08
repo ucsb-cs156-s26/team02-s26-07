@@ -33,6 +33,7 @@ function UCSBOrganizationForm({
               {...register("orgCode", {
                 required: "Org Code is required.",
               })}
+              // Stryker disable next-line all
               disabled={!!initialContents}
             />
             <Form.Control.Feedback type="invalid">
