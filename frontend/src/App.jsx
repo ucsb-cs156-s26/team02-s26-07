@@ -91,11 +91,6 @@ function App() {
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route exact path="/articles" element={<ArticlesIndexPage />} />
-          <Route
-            exact
-            path="/recommendationrequests"
-            element={<RecommendationRequestsIndexPage />}
-          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
@@ -110,6 +105,19 @@ function App() {
             path="/articles/create"
             element={<ArticlesCreatePage />}
           />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/recommendationrequests"
+            element={<RecommendationRequestsIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
           <Route
             exact
             path="/recommendationrequests/edit/:id"
@@ -149,7 +157,7 @@ function App() {
         <>
           <Route
             exact
-            path="/ucsborganization"
+            path="/ucsborganizations"
             element={<UCSBOrganizationIndexPage />}
           />
         </>
@@ -158,12 +166,12 @@ function App() {
         <>
           <Route
             exact
-            path="/ucsborganization/edit/:id"
+            path="/ucsborganizations/edit/:id"
             element={<UCSBOrganizationEditPage />}
           />
           <Route
             exact
-            path="/ucsborganization/create"
+            path="/ucsborganizations/create"
             element={<UCSBOrganizationCreatePage />}
           />
         </>

@@ -13,7 +13,7 @@ export default function UCSBOrganizationIndexPage() {
       return (
         <Button
           variant="primary"
-          href="/ucsborganization/create"
+          href="/ucsborganizations/create"
           style={{ float: "right" }}
         >
           Create UCSBOrganization
