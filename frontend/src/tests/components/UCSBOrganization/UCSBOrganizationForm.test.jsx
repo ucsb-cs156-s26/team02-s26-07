@@ -19,6 +19,7 @@ describe("UCSBOrganizationForm tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = [
+    "Org Code",
     "Organization Translation Short",
     "Organization Translation",
     "Inactive",
@@ -60,7 +61,9 @@ describe("UCSBOrganizationForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(await screen.findByTestId(`${testId}-orgCode`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-orgCode`),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Org Code/)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-orgCode`)).toHaveValue("ZPR");
   });
@@ -94,7 +97,10 @@ describe("UCSBOrganizationForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    await screen.findByText(/Organization Translation Short is required./);
+    await screen.findByText(/Org Code is required./);
+    expect(
+      screen.getByText(/Organization Translation Short is required./),
+    ).toBeInTheDocument();
     expect(
       screen.getByText(/Organization Translation is required./),
     ).toBeInTheDocument();
@@ -111,12 +117,14 @@ describe("UCSBOrganizationForm tests", () => {
       </QueryClientProvider>,
     );
 
+    const orgCodeField = screen.getByTestId(`${testId}-orgCode`);
     const orgTranslationShortField = screen.getByTestId(
       `${testId}-orgTranslationShort`,
     );
     const orgTranslationField = screen.getByTestId(`${testId}-orgTranslation`);
     const submitButton = screen.getByTestId(`${testId}-submit`);
 
+    fireEvent.change(orgCodeField, { target: { value: "ZPR" } });
     fireEvent.change(orgTranslationShortField, {
       target: { value: "ZETA PHI RHO" },
     });
@@ -128,12 +136,16 @@ describe("UCSBOrganizationForm tests", () => {
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
     expect(
+      screen.queryByText(/Org Code is required./),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByText(/Organization Translation Short is required./),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByText(/Organization Translation is required./),
     ).not.toBeInTheDocument();
   });
+
   test("that the inactive checkbox is present", async () => {
     render(
       <QueryClientProvider client={queryClient}>
