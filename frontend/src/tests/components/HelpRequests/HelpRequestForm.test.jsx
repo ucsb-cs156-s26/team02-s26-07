@@ -20,11 +20,15 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm />
       </Router>,
     );
-    await screen.findByTestId(/HelpRequestForm-requesterEmail/);
-    await screen.findByTestId(/HelpRequestForm-submit/);
-    expect(
-      screen.getByTestId(/HelpRequestForm-requesterEmail/),
-    ).toBeInTheDocument();
+    await screen.findByText(/Create/);
+    await screen.findByText(/Id/);
+    await screen.findByText(/Requester Email/);
+    await screen.findByText(/Team Id/);
+    await screen.findByText(/Table or Breakout Room/);
+    await screen.findByText(/Request Time/);
+    await screen.findByText(/Explanation/);
+    await screen.findByText(/Solved/);
+    expect(screen.getByText(/Create/)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in a HelpRequest", async () => {
@@ -33,28 +37,26 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
       </Router>,
     );
-    await screen.findByTestId(/HelpRequestForm-requesterEmail/);
-    expect(screen.getByText(/Requester Email/)).toBeInTheDocument();
-  });
 
-  test("Correct Error messsages on bad input", async () => {
-    render(
-      <Router>
-        <HelpRequestForm />
-      </Router>,
+    await screen.findByTestId(/HelpRequestForm-id/);
+    expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue(
+      String(helpRequestFixtures.oneHelpRequest.id),
     );
-    await screen.findByTestId("HelpRequestForm-submit");
-    const submitButton = screen.getByTestId("HelpRequestForm-submit");
-
-    fireEvent.click(submitButton);
-
-    await screen.findByText(/Requester Email is required/);
-    expect(screen.getByText(/Team Id is required/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Table or Breakout Room is required/),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Request Time is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Requester Email/)).toHaveValue(
+      helpRequestFixtures.oneHelpRequest.requesterEmail,
+    );
+    expect(screen.getByLabelText(/Team Id/)).toHaveValue(
+      helpRequestFixtures.oneHelpRequest.teamId,
+    );
+    expect(screen.getByLabelText(/Table or Breakout Room/)).toHaveValue(
+      helpRequestFixtures.oneHelpRequest.tableOrBreakoutRoom,
+    );
+    expect(screen.getByLabelText(/Request Time/)).toHaveValue(
+      "2026-05-03T10:30:30.000",
+    );
+    expect(screen.getByLabelText(/Explanation/)).toHaveValue(
+      helpRequestFixtures.oneHelpRequest.explanation,
+    );
   });
 
   test("Correct Error messsages on missing input", async () => {
@@ -64,12 +66,13 @@ describe("HelpRequestForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("HelpRequestForm-submit");
+    await screen.findByTestId(/HelpRequestForm-requesterEmail/);
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
     fireEvent.click(submitButton);
 
-    await screen.findByText(/Requester Email is required/);
-    expect(screen.getByText(/Team Id is required/)).toBeInTheDocument();
+    await screen.findByText(/Requester Email is required./);
+    expect(screen.getByText(/Team Id is required./)).toBeInTheDocument();
     expect(
       screen.getByText(/Table or Breakout Room is required/),
     ).toBeInTheDocument();
@@ -85,7 +88,7 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm submitAction={mockSubmitAction} />
       </Router>,
     );
-    await screen.findByTestId("HelpRequestForm-requesterEmail");
+    await screen.findByTestId("HelpRequestForm-submit");
 
     const requesterEmailField = screen.getByTestId(
       "HelpRequestForm-requesterEmail",
@@ -96,35 +99,35 @@ describe("HelpRequestForm tests", () => {
     );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
-    const solvedField = screen.getByTestId("HelpRequestForm-solved");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
     fireEvent.change(requesterEmailField, {
       target: { value: "whamabe@ucsb.edu" },
     });
-    fireEvent.change(teamIdField, {
-      target: { value: "team07" },
-    });
-    fireEvent.change(tableOrBreakoutRoomField, {
-      target: { value: "table" },
-    });
+    fireEvent.change(teamIdField, { target: { value: "team07" } });
+    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "table" } });
     fireEvent.change(requestTimeField, {
-      target: { value: "2022-01-02T12:00" },
+      target: { value: "2026-05-03T10:30:30" },
     });
     fireEvent.change(explanationField, {
-      target: { value: "I need helhp" },
+      target: { value: "I am confused about blah blah blah" },
     });
-    fireEvent.change(solvedField, { target: { value: true } });
-
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
     expect(
-      screen.queryByText(/QuarterYYYYQ must be in the format YYYYQ/),
+      screen.queryByText(/Requester Email is required./),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Team Id is required./)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Table or Breakout Room is required/),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/localDateTime must be in ISO format/),
+      screen.queryByText(/Request Time is required/),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Explanation is required/),
     ).not.toBeInTheDocument();
   });
 
