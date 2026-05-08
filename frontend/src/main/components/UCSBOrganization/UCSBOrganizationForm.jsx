@@ -33,7 +33,7 @@ function UCSBOrganizationForm({
               {...register("orgCode", {
                 required: "Org Code is required.",
               })}
-              disabled={initialContents ? true : false}
+              disabled={!!initialContents}
             />
             <Form.Control.Feedback type="invalid">
               {errors.orgCode?.message}
