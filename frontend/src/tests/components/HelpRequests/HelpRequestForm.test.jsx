@@ -28,6 +28,10 @@ describe("HelpRequestForm tests", () => {
     await screen.findByText(/Request Time/);
     await screen.findByText(/Explanation/);
     await screen.findByText(/Solved/);
+
+    expect(screen.getByTestId("HelpRequestForm-submit")).toHaveTextContent(
+      "Create",
+    );
     expect(screen.getByText(/Create/)).toBeInTheDocument();
   });
 
@@ -56,6 +60,9 @@ describe("HelpRequestForm tests", () => {
     );
     expect(screen.getByLabelText(/Explanation/)).toHaveValue(
       helpRequestFixtures.oneHelpRequest.explanation,
+    );
+    expect(screen.getByTestId("HelpRequestForm-submit")).toHaveTextContent(
+      "Create",
     );
   });
 
@@ -143,5 +150,80 @@ describe("HelpRequestForm tests", () => {
     fireEvent.click(cancelButton);
 
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
+  });
+
+  //------------------------------
+
+  test("renders default Create button label", () => {
+    render(
+      <Router>
+        <HelpRequestForm submitAction={vi.fn()} />
+      </Router>,
+    );
+
+    expect(screen.getByTestId("HelpRequestForm-submit")).toHaveTextContent(
+      "Create",
+    );
+  });
+
+  test("does not show id field when initialContents is not provided", () => {
+    render(
+      <Router>
+        <HelpRequestForm submitAction={vi.fn()} />
+      </Router>,
+    );
+
+    expect(screen.queryByTestId("HelpRequestForm-id")).not.toBeInTheDocument();
+  });
+
+  // kinda sketch
+  test("shows id field when initialContents is provided", () => {
+    const initialContents = {
+      id: 17,
+      requesterEmail: "student@example.com",
+      teamId: "team01",
+      tableOrBreakoutRoom: "table 3",
+      requestTime: "2025-01-02T03:04:05",
+      explanation: "Need help",
+      solved: false,
+    };
+
+    render(
+      <Router>
+        <HelpRequestForm
+          initialContents={initialContents}
+          submitAction={vi.fn()}
+        />
+      </Router>,
+    );
+
+    expect(screen.getByTestId("HelpRequestForm-id")).toBeInTheDocument();
+  });
+
+  test("shows disabled id field with correct value when editing", () => {
+    const initialContents = {
+      id: 17,
+      requesterEmail: "student@example.com",
+      teamId: "team01",
+      tableOrBreakoutRoom: "table 3",
+      requestTime: "2025-01-02T03:04:05",
+      explanation: "Need help",
+      solved: false,
+    };
+
+    render(
+      <Router>
+        <HelpRequestForm
+          initialContents={initialContents}
+          submitAction={vi.fn()}
+        />
+      </Router>,
+    );
+
+    const idField = screen.getByTestId("HelpRequestForm-id");
+
+    expect(idField).toBeInTheDocument();
+    expect(idField).toHaveValue("17");
+    expect(idField).toBeDisabled();
   });
 });
