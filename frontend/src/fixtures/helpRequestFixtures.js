@@ -4,7 +4,7 @@ const helpRequestFixtures = {
     requesterEmail: "whamabe@ucsb.edu",
     teamId: "team07",
     tableOrBreakoutRoom: "table",
-    requestTime: "2026-05-03T10:30:00",
+    requestTime: "2026-05-03T10:30:30",
     explanation: "I am confused about blah blah blah",
     solved: false,
   },
