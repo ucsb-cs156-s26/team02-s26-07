@@ -226,4 +226,17 @@ describe("HelpRequestForm tests", () => {
     expect(idField).toHaveValue("17");
     expect(idField).toBeDisabled();
   });
+
+  test("solved checkbox is present and unchecked by default", () => {
+    render(
+      <Router>
+        <HelpRequestForm submitAction={vi.fn()} />
+      </Router>,
+    );
+
+    const solvedCheckbox = screen.getByTestId("HelpRequestForm-solved");
+
+    expect(solvedCheckbox).toBeInTheDocument();
+    expect(solvedCheckbox).not.toBeChecked();
+  });
 });
