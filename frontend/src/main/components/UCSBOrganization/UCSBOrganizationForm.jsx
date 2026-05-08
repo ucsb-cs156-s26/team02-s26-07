@@ -21,7 +21,7 @@ function UCSBOrganizationForm({
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
-     <Row>
+      <Row>
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="orgCode">Org Code</Form.Label>

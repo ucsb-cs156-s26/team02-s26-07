@@ -61,9 +61,7 @@ describe("UCSBOrganizationForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(
-      await screen.findByTestId(`${testId}-orgCode`),
-    ).toBeInTheDocument();
+    expect(await screen.findByTestId(`${testId}-orgCode`)).toBeInTheDocument();
     expect(screen.getByText(/Org Code/)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-orgCode`)).toHaveValue("ZPR");
   });
@@ -135,9 +133,7 @@ describe("UCSBOrganizationForm tests", () => {
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-    expect(
-      screen.queryByText(/Org Code is required./),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Org Code is required./)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/Organization Translation Short is required./),
     ).not.toBeInTheDocument();
