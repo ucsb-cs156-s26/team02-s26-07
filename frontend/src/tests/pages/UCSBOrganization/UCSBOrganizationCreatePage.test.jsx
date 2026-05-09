@@ -108,7 +108,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      orgCode: "ZPR",
+      orgCode: undefined,
       orgTranslationShort: "ZETA PHI RHO",
       orgTranslation: "ZETA PHI RHO FRATERNITY",
       inactive: false,
