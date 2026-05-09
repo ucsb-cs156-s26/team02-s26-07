@@ -35,7 +35,7 @@ const helpRequestFixtures = {
       tableOrBreakoutRoom: "table",
       requestTime: "2026-05-06T10:30:00",
       explanation: "I need assistance on blah bleh blah",
-      solved: false,
+      solved: true,
     },
   ],
 };
