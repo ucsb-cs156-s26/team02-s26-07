@@ -8,7 +8,6 @@ const helpRequestFixtures = {
     explanation: "I am confused about blah blah blah",
     solved: false,
   },
-
   threeHelpRequests: [
     {
       id: 3,
@@ -26,7 +25,7 @@ const helpRequestFixtures = {
       tableOrBreakoutRoom: "table",
       requestTime: "2026-05-04T05:37:02.33",
       explanation: "I am failing at blah blah bleh",
-      solved: false,
+      solved: true,
     },
     {
       id: 6,
@@ -39,5 +38,4 @@ const helpRequestFixtures = {
     },
   ],
 };
-
 export { helpRequestFixtures };

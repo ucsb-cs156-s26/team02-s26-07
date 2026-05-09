@@ -137,6 +137,10 @@ describe("HelpRequestsTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-2-col-solved`),
     ).toHaveTextContent("No");
 
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-solved`),
+    ).toHaveTextContent("Yes");
+
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
     );
