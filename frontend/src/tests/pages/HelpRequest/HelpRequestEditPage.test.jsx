@@ -1,38 +1,207 @@
-import { render, screen } from "@testing-library/react";
-import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
+import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
+
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
+import mockConsole from "tests/testutils/mockConsole";
 
-describe("HelpRequestEditPage tests", () => {
-  const axiosMock = new AxiosMockAdapter(axios);
-  const setupUserOnly = () => {
-    axiosMock.reset();
-    axiosMock.resetHistory();
-    axiosMock
-      .onGet("/api/currentUser")
-      .reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock
-      .onGet("/api/systemInfo")
-      .reply(200, systemInfoFixtures.showingNeither);
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
   };
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    setupUserOnly();
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <HelpRequestEditPage />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
-    await screen.findByText("Edit page not yet implemented");
-    expect(
-      screen.getByText("Edit page not yet implemented"),
-    ).toBeInTheDocument();
+});
+
+const mockNavigate = vi.fn();
+vi.mock("react-router", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    useParams: vi.fn(() => ({
+      id: 2,
+    })),
+    Navigate: vi.fn((x) => {
+      mockNavigate(x);
+      return null;
+    }),
+  };
+});
+
+let axiosMock;
+describe("HelpRequestEditPage tests", () => {
+  describe("when the backend doesn't return data", () => {
+    beforeEach(() => {
+      axiosMock = new AxiosMockAdapter(axios);
+      axiosMock.reset();
+      axiosMock.resetHistory();
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+      axiosMock.onGet("/api/helprequests", { params: { id: 2 } }).timeout();
+    });
+
+    afterEach(() => {
+      mockToast.mockClear();
+      mockNavigate.mockClear();
+      axiosMock.restore();
+      axiosMock.resetHistory();
+    });
+
+    const queryClient = new QueryClient();
+    test("renders header but form is not present", async () => {
+      const restoreConsole = mockConsole();
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <HelpRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+      await screen.findByText("Edit Help Request");
+      expect(
+        screen.queryByTestId("HelpRequestForm-requesterEmail"),
+      ).not.toBeInTheDocument();
+      restoreConsole();
+    });
+  });
+
+  describe("tests where backend is working normally", () => {
+    beforeEach(() => {
+      axiosMock = new AxiosMockAdapter(axios);
+      axiosMock.reset();
+      axiosMock.resetHistory();
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+      axiosMock
+        .onGet("/api/helprequests", { params: { id: 2 } })
+        .reply(200, helpRequestFixtures.oneHelpRequest);
+      axiosMock.onPut("/api/helprequests").reply(200, {
+        id: 2,
+        requesterEmail: "updated@ucsb.edu",
+        teamId: "team07",
+        tableOrBreakoutRoom: "table",
+        requestTime: "2026-05-03T10:30:30",
+        explanation: "Updated explanation",
+        solved: false,
+      });
+    });
+
+    afterEach(() => {
+      mockToast.mockClear();
+      mockNavigate.mockClear();
+      axiosMock.restore();
+      axiosMock.resetHistory();
+    });
+
+    const queryClient = new QueryClient();
+
+    test("Is populated with the data provided", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <HelpRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("HelpRequestForm-id");
+
+      const idField = screen.getByTestId("HelpRequestForm-id");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
+      const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
+      const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+      expect(idField).toBeInTheDocument();
+      expect(idField).toHaveValue("2");
+      expect(requesterEmailField).toBeInTheDocument();
+      expect(requesterEmailField).toHaveValue("whamabe@ucsb.edu");
+      expect(teamIdField).toHaveValue("team07");
+      expect(tableOrBreakoutRoomField).toHaveValue("table");
+      expect(explanationField).toHaveValue(
+        "I am confused about blah blah blah",
+      );
+      expect(submitButton).toHaveTextContent("Update");
+
+      fireEvent.change(requesterEmailField, {
+        target: { value: "updated@ucsb.edu" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "Updated explanation" },
+      });
+      fireEvent.click(submitButton);
+
+      await waitFor(() => expect(mockToast).toBeCalled());
+      expect(mockToast).toBeCalledWith(
+        "Help Request Updated - id: 2 requesterEmail: updated@ucsb.edu",
+      );
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+
+      expect(axiosMock.history.put.length).toBe(1);
+      expect(axiosMock.history.put[0].params).toEqual({ id: 2 });
+      expect(axiosMock.history.put[0].data).toBe(
+        JSON.stringify({
+          requesterEmail: "updated@ucsb.edu",
+          teamId: "team07",
+          tableOrBreakoutRoom: "table",
+          requestTime: "2026-05-03T10:30:30",
+          explanation: "Updated explanation",
+          solved: false,
+        }),
+      );
+    });
+
+    test("Changes when you click Update", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <HelpRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("HelpRequestForm-id");
+
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
+      const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+      expect(requesterEmailField).toHaveValue("whamabe@ucsb.edu");
+      expect(submitButton).toBeInTheDocument();
+
+      fireEvent.change(requesterEmailField, {
+        target: { value: "updated@ucsb.edu" },
+      });
+      fireEvent.click(submitButton);
+
+      await waitFor(() => expect(mockToast).toBeCalled());
+      expect(mockToast).toBeCalledWith(
+        "Help Request Updated - id: 2 requesterEmail: updated@ucsb.edu",
+      );
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+    });
   });
 });

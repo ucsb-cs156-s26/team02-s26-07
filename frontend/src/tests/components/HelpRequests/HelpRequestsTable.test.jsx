@@ -181,7 +181,7 @@ describe("HelpRequestsTable tests", () => {
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/helprequests/edit/3"),
+      expect(mockedNavigate).toHaveBeenCalledWith("/helprequest/edit/3"),
     );
   });
 
