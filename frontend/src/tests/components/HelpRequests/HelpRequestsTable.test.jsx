@@ -84,19 +84,11 @@ describe("HelpRequestsTable tests", () => {
   test("Has the expected column headers and content for adminUser", () => {
     const currentUser = currentUserFixtures.adminUser;
 
-    const helpRequestsWithSolvedTrue = [
-      {
-        ...helpRequestFixtures.threeHelpRequests[0],
-        solved: true,
-      },
-      ...helpRequestFixtures.threeHelpRequests.slice(1),
-    ];
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <HelpRequestsTable
-            helpRequests={helpRequestsWithSolvedTrue}
+            helpRequests={helpRequestFixtures.threeHelpRequests}
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -139,7 +131,7 @@ describe("HelpRequestsTable tests", () => {
 
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-solved`),
-    ).toHaveTextContent("Yes");
+    ).toHaveTextContent("No");
 
     expect(
       screen.getByTestId(`${testId}-cell-row-2-col-solved`),
