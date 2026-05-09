@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-07
 owner: ucsb-cs156-s26
 repo_name: team02-s26-07
-pull_requests: [{"author":{"id":"U_kgDOCeQC6w","is_bot":false,"login":"rayxzw","name":""},"headRefName":"rx-MenuItemReview-e2etest","number":125,"title":"rx - menuitemreview e2etest fix wrong column header name","url":"https://github.com/ucsb-cs156-s26/team02-s26-07/pull/125"}]
+pull_requests: []
