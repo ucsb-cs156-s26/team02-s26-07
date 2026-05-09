@@ -44,7 +44,9 @@ public class MenuItemReviewWebIT extends WebTestCase {
 
     page.getByTestId("MenuItemReviewTable-cell-row-0-col-Delete-button").click();
 
-    assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-name")).not().isVisible();
+    assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-reviewerEmail"))
+        .not()
+        .isVisible();
   }
 
   @Test
