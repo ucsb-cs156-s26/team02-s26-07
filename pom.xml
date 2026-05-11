@@ -12,6 +12,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.4.3</version>
+    <relativePath/>
   </parent>
 
   <!-- (2) <groupId/> -->
@@ -19,7 +20,7 @@
 
   <!-- (3) <artifactId/> -->
 
-  <artifactId>team01</artifactId>
+  <artifactId>team02</artifactId>
 
   <!-- (4) <version/> -->
   <version>1.0.0</version>
