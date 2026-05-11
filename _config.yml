@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-07
 owner: ucsb-cs156-s26
 repo_name: team02-s26-07
-pull_requests: [{"author":{"id":"U_kgDOCNoU5Q","is_bot":false,"login":"Alexander-Reyes9","name":"AlexanderReyes99"},"headRefName":"ar-team03","number":128,"title":"Add HelpRequest integration and end-to-end tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-07/pull/128"}]
+pull_requests: [{"author":{"id":"U_kgDOCNoU5Q","is_bot":false,"login":"Alexander-Reyes9","name":"AlexanderReyes99"},"headRefName":"ar-team03-e2e","number":131,"title":"Add UCSBOrganization integration and end-to-end tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-07/pull/131"}]
