@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-07
 owner: ucsb-cs156-s26
 repo_name: team02-s26-07
-pull_requests: [{"author":{"id":"U_kgDOCNoU5Q","is_bot":false,"login":"Alexander-Reyes9","name":"AlexanderReyes99"},"headRefName":"ar-ArticleIT","number":138,"title":"Add Article integration test","url":"https://github.com/ucsb-cs156-s26/team02-s26-07/pull/138"}]
+pull_requests: [{"author":{"id":"U_kgDOCNoU5Q","is_bot":false,"login":"Alexander-Reyes9","name":"AlexanderReyes99"},"headRefName":"ar-ArticleEnd2End","number":139,"title":"Add Article end-to-end test","url":"https://github.com/ucsb-cs156-s26/team02-s26-07/pull/139"}]
